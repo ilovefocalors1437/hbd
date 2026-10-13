@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const TAPS_NEEDED = 16;
-  const CARD_HOLD_MS = 3200;
+  const CARD_HOLD_MS = 4500;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const loot = [
     { src: "assets/card-kitty.webp", label: "Kitty แดงสดใส", alt: "การ์ดวันเกิดลายแมวคิตตี้. สุขสันต์วันเกิดนะ มีความสุขมาก ๆ :D" },
@@ -69,12 +69,6 @@
     const play = els.music.play();
     if (play) play.then(() => { musicStarted = true; }).catch(() => {});
   }
-  startMusic();
-  const unlockAudio = () => {
-    startMusic();
-    ['pointerdown', 'touchstart', 'click', 'keydown'].forEach(ev => window.removeEventListener(ev, unlockAudio));
-  };
-  ['pointerdown', 'touchstart', 'click', 'keydown'].forEach(ev => window.addEventListener(ev, unlockAudio, { passive: true }));
   const preloadCache = [...loot, finale].map(item => {
     const image = new Image(); image.decoding = 'async'; image.src = item.src; return image;
   });
@@ -279,33 +273,6 @@
       later(showNextCard, 200, true);
     }, 1550);
   }
-  let lastSkipTime = 0;
-  function skipCard(event) {
-    if (machine.state !== 'revealing') return;
-    const now = performance.now();
-    if (now - lastSkipTime < 100) return;
-    lastSkipTime = now;
-    clearBucket(machine.sequenceTimers);
-    const item = loot[machine.revealIndex];
-    if (item) {
-      physics.spawn(item, 1 + machine.revealIndex * .035);
-    }
-    machine.revealIndex++;
-    machine.revealToken++;
-    els.focus.replaceChildren();
-    if (event && event.clientX) {
-      particles.burst(event.clientX, event.clientY, 10, 'tap');
-    } else {
-      const rect = els.app.getBoundingClientRect();
-      particles.burst(rect.left + rect.width / 2, rect.top + rect.height * .48, 10, 'spark');
-    }
-    if (navigator.vibrate) navigator.vibrate(10);
-    if (machine.revealIndex >= loot.length) {
-      showLetter();
-    } else {
-      showNextCard();
-    }
-  }
   function showNextCard() {
     if (machine.state !== 'revealing') return;
     clearBucket(machine.sequenceTimers);
@@ -324,20 +291,15 @@
     later(() => {
       if (machine.state !== 'revealing' || token !== machine.revealToken) return;
       card.classList.add('is-leaving');
-      later(() => settleCard(token), 350, true);
+      later(() => settleCard(token), 450, true);
     }, CARD_HOLD_MS, true);
   }
   function settleCard(token) {
     if (token !== machine.revealToken || machine.state !== 'revealing') return;
-    clearBucket(machine.sequenceTimers);
     ++machine.revealToken;
     physics.spawn(loot[machine.revealIndex], 1 + machine.revealIndex * .035);
     machine.revealIndex++; els.focus.replaceChildren();
-    if (machine.revealIndex >= loot.length) {
-      showLetter();
-    } else {
-      later(showNextCard, 200, true);
-    }
+    later(showNextCard, 250, true);
   }
   function showLetter() {
     machine.state = 'letter';
@@ -421,7 +383,6 @@
     els.app.classList.remove('is-finale','is-anticipating'); setScreen(els.gift,els.giftButton);
   }
   els.giftButton.addEventListener('click',tapGift);
-  els.reveal.addEventListener('pointerdown',skipCard);
   els.replay.addEventListener('click',replay);
   document.addEventListener('error',event=>{
     const img=event.target;
@@ -432,10 +393,6 @@
     if(event.key==='Escape')closeGalleryModal();
     const modal=$('#galleryModal');
     if(modal&&event.key==='Tab'){event.preventDefault();$('.modal-close',modal).focus();}
-    if(machine.state==='revealing'&&(event.key===' '||event.key==='Enter'||event.key==='ArrowRight')){
-      event.preventDefault();
-      skipCard();
-    }
   });
   let resizeTimer;
   window.addEventListener('resize',()=>{
