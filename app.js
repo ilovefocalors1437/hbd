@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const TAPS_NEEDED = 16;
-  const CARD_HOLD_MS = 4500;
+  const CARD_HOLD_MS = 3600;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const loot = [
     { src: "assets/card-kitty.webp", label: "Kitty แดงสดใส", alt: "การ์ดวันเกิดลายแมวคิตตี้. สุขสันต์วันเกิดนะ มีความสุขมาก ๆ :D" },
