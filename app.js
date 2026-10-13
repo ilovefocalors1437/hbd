@@ -325,10 +325,10 @@
   function showFinale() {
     if (machine.state !== 'anticipation') return;
     machine.state = 'finale'; els.app.classList.remove('is-anticipating'); els.app.classList.add('is-finale');
-    els.focus.innerHTML = '<figure class="finale-card"><div class="image-frame"><img src="'+finale.src+'" alt="'+finale.alt+'" data-fallback="Kitty cake" draggable="false"></div><figcaption><h1 class="finale-title">HBD PAM!</h1><p class="finale-sub">HBD แม่</p><div class="ascii-cheer" aria-hidden="true"><span>✧</span> (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ <span>✧</span></div><button class="end-button" id="galleryButton" type="button" hidden>ดูทั้งหมด / ดูอีกครั้ง</button></figcaption></figure>';
+    els.focus.innerHTML = '<figure class="finale-card"><div class="image-frame"><img src="'+finale.src+'" alt="'+finale.alt+'" data-fallback="Kitty cake" draggable="false"></div><figcaption><h1 class="finale-title">HBD PAM!</h1><p class="finale-sub">HBD แม่! :D</p><div class="ascii-cheer" aria-hidden="true"><span>✧</span> (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ <span>✧</span></div><button class="end-button" id="galleryButton" type="button" hidden>ดูทั้งหมด / ดูอีกครั้ง</button></figcaption></figure>';
     flash('mega-flash'); particles.burst(innerWidth/2,innerHeight*.43,120,'finale'); particles.finaleRain();
     if (navigator.vibrate) navigator.vibrate([40,30,70]);
-    announce('HBD PAM! HBD แม่');
+    announce('HBD PAM! HBD แม่! :D');
     later(() => {
       const button = $('#galleryButton'); button.hidden=false;
       button.addEventListener('click',showGallery,{once:true});

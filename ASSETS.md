@@ -1,6 +1,6 @@
 # Image sources
 
-Nine greeting cards were composed in HTML, with **HBD PAM** and **HBD แม่** added as real text before rendering to 720 × 960 PNG. WebP copies are used by the page. The five supplied photos were retained; phone interface bars and the English Furina video subtitle were cropped out.
+Nine greeting cards were composed in HTML, with **HBD PAM** and **HBD แม่! :D** added as real text before rendering to 720 × 960 PNG. WebP copies are used by the page. The five supplied photos were retained; phone interface bars and the English Furina video subtitle were cropped out.
 
 ## Supplied images
 
