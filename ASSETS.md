@@ -1,6 +1,6 @@
 # Image sources
 
-Nine greeting cards were composed in HTML, with **HBD PAM** and **HBD แม่! :D** added as real text before rendering to 720 × 960 PNG. WebP copies are used by the page. The five supplied photos were retained; phone interface bars and the English Furina video subtitle were cropped out.
+Nine greeting cards were composed in HTML, with **HBD PAM** and a different birthday wish added as real text before rendering to 720 × 960 PNG. WebP copies are used by the page. The five supplied photos were retained; phone interface bars and the English Furina video subtitle were cropped out.
 
 ## Supplied images
 
@@ -78,3 +78,7 @@ Constraints: no text, no letters, no numbers, no lettering, no logo writing, no 
 ## Supplied music
 
 `assets/a-sweet-smile.mp3` is the user-supplied “#03 A Sweet Smile｜Genshin Impact.mp3”. It starts on the first tap, loops, and pauses while the page is in the background.
+
+## Birthday wishes
+
+The final card captions are recorded in `assets/card-wishes.json`. The original fonts were retained.

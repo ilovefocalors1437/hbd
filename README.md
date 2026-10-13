@@ -2,7 +2,7 @@
 
 A mobile birthday surprise in strawberry pink, cream, and cherry red, with floating kaomoji decorations. The page starts with the gift box. Tap it rapidly to make it shake and glow, then watch nine birthday cards bounce out and appear one at a time. The letter waits for you to read **happy birthday สูง เก่งง ^^** before the grand Hello Kitty cake reveal.
 
-Every birthday card includes **HBD PAM** and **HBD แม่! :D**. After the reveal, view the collection or replay the gift opening. The supplied “A Sweet Smile” MP3 starts on the first gift tap. There are no audio controls.
+Every birthday card keeps **HBD PAM** and has a different, simple birthday wish. One card encourages mom about the tiring trip to Rayong, and another wishes her good health at 51, 52, and 53. After the reveal, view the collection or replay the gift opening. The supplied “A Sweet Smile” MP3 starts on the first gift tap. There are no audio controls.
 
 ## Open
 

@@ -1,18 +1,18 @@
 (() => {
   'use strict';
   const TAPS_NEEDED = 16;
-  const CARD_HOLD_MS = 3400;
+  const CARD_HOLD_MS = 4500;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const loot = [
-    { src: "assets/card-kitty.webp", label: "Kitty แดงสดใส", alt: "การ์ดวันเกิดลายแมวคิตตี้" },
-    { src: "assets/card-kitty-gift.webp", label: "กล่องของขวัญ Kitty", alt: "การ์ดคิตตี้กับกล่องของขวัญ" },
-    { src: "assets/card-furina-1.webp", label: "Furina Cat มาอวยพร", alt: "การ์ดแมว Furina อวยพรวันเกิด" },
-    { src: "assets/card-melody.webp", label: "My Melody สีสตรอว์เบอร์รี", alt: "การ์ดวันเกิด My Melody" },
-    { src: "assets/card-kitty-party.webp", label: "Kitty Party!", alt: "การ์ดงานปาร์ตี้คิตตี้" },
-    { src: "assets/card-furina-2.webp", label: "แมว Furina วิ้ง ๆ", alt: "การ์ดแมว Furina สีชมพู" },
-    { src: "assets/card-kitty-pink-cake.webp", label: "เค้กชมพูของ Kitty", alt: "การ์ดคิตตี้กับเค้กวันเกิดสีชมพู" },
-    { src: "assets/card-furina-3.webp", label: "Furina Cat อีกหนึ่งใบ", alt: "การ์ดแมว Furina ฉลองวันเกิด" },
-    { src: "assets/card-furina-cake.webp", label: "Furina Cat & Strawberry Cake", alt: "การ์ดแมว Furina กับเค้กสตรอว์เบอร์รี" }
+    { src: "assets/card-kitty.webp", label: "Kitty แดงสดใส", alt: "การ์ดวันเกิดลายแมวคิตตี้. สุขสันต์วันเกิดนะ มีความสุขมาก ๆ :D" },
+    { src: "assets/card-kitty-gift.webp", label: "กล่องของขวัญ Kitty", alt: "การ์ดคิตตี้กับกล่องของขวัญ. ไประยองคงจะเหนื่อยมาก สู้ ๆ นะ" },
+    { src: "assets/card-furina-1.webp", label: "Furina Cat มาอวยพร", alt: "การ์ดแมว Furina อวยพรวันเกิด. 51 ปีแล้ว 52 53 ก็ขอให้แข็งแรงนะ ^^" },
+    { src: "assets/card-melody.webp", label: "My Melody สีสตรอว์เบอร์รี", alt: "การ์ดวันเกิด My Melody. ขอให้สุขภาพแข็งแรง ไม่เจ็บไม่ป่วยนะ" },
+    { src: "assets/card-kitty-party.webp", label: "Kitty Party!", alt: "การ์ดงานปาร์ตี้คิตตี้. ขอให้ปีนี้ มีแต่เรื่องดี ๆ นะ" },
+    { src: "assets/card-furina-2.webp", label: "แมว Furina วิ้ง ๆ", alt: "การ์ดแมว Furina สีชมพู. คิดอะไรก็ขอให้สมหวัง ตามที่ตั้งใจไว้" },
+    { src: "assets/card-kitty-pink-cake.webp", label: "เค้กชมพูของ Kitty", alt: "การ์ดคิตตี้กับเค้กวันเกิดสีชมพู. เงินทองไหลมาเทมา รวย ๆ นะ :D" },
+    { src: "assets/card-furina-3.webp", label: "Furina Cat อีกหนึ่งใบ", alt: "การ์ดแมว Furina ฉลองวันเกิด. ขอให้ได้ยิ้มเยอะ ๆ มีความสุขทุกวัน ^^" },
+    { src: "assets/card-furina-cake.webp", label: "Furina Cat & Strawberry Cake", alt: "การ์ดแมว Furina กับเค้กสตรอว์เบอร์รี. อายุยืน ๆ นะ ได้ฉลองวันเกิดกันอีกหลายปี" }
   ];
   const finale = {
     src: "assets/kitty-cake.webp",
@@ -325,10 +325,10 @@
   function showFinale() {
     if (machine.state !== 'anticipation') return;
     machine.state = 'finale'; els.app.classList.remove('is-anticipating'); els.app.classList.add('is-finale');
-    els.focus.innerHTML = '<figure class="finale-card"><div class="image-frame"><img src="'+finale.src+'" alt="'+finale.alt+'" data-fallback="Kitty cake" draggable="false"></div><figcaption><h1 class="finale-title">HBD PAM!</h1><p class="finale-sub">HBD แม่! :D</p><div class="ascii-cheer" aria-hidden="true"><span>✧</span> (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ <span>✧</span></div><button class="end-button" id="galleryButton" type="button" hidden>ดูทั้งหมด / ดูอีกครั้ง</button></figcaption></figure>';
+    els.focus.innerHTML = '<figure class="finale-card"><div class="image-frame"><img src="'+finale.src+'" alt="'+finale.alt+'" data-fallback="Kitty cake" draggable="false"></div><figcaption><h1 class="finale-title">HBD PAM!</h1><p class="finale-sub">สุขสันต์วันเกิดนะ :D</p><div class="ascii-cheer" aria-hidden="true"><span>✧</span> (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ <span>✧</span></div><button class="end-button" id="galleryButton" type="button" hidden>ดูทั้งหมด / ดูอีกครั้ง</button></figcaption></figure>';
     flash('mega-flash'); particles.burst(innerWidth/2,innerHeight*.43,120,'finale'); particles.finaleRain();
     if (navigator.vibrate) navigator.vibrate([40,30,70]);
-    announce('HBD PAM! HBD แม่! :D');
+    announce('HBD PAM! สุขสันต์วันเกิดนะ :D');
     later(() => {
       const button = $('#galleryButton'); button.hidden=false;
       button.addEventListener('click',showGallery,{once:true});
