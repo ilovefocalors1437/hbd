@@ -1,0 +1,94 @@
+
+:root{--paper:#fff9f1;--blush:#ffd3df;--pink:#ff72a2;--berry:#ca204c;--red:#a71e43;--choco:#61263c;--ease:cubic-bezier(.2,1.3,.4,1)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:'Trebuchet MS','Segoe UI',Tahoma,sans-serif;color:var(--choco);background:#ffd3e0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:3px solid var(--red);outline-offset:7px}
+#backgroundMusic{display:none}#fxCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
+.candy-frame{position:relative;isolation:isolate;width:100%;height:100svh;min-height:440px;overflow:hidden;background:radial-gradient(ellipse at 50% 43%,#fff9ef 0%,#ffedf1 34%,#ffbfd3 75%,#ff90b3 100%)}
+.candy-frame::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 4% 12%,#fff8 0 4px,transparent 5px),radial-gradient(circle at 93% 73%,#fff8 0 3px,transparent 4px);background-size:190px 250px}
+.sprinkle-field{position:absolute;inset:0;pointer-events:none;opacity:.18;background:radial-gradient(ellipse 70px 36px at 0% 22%,#ff588e 0 80%,transparent 81%),radial-gradient(ellipse 82px 45px at 100% 77%,#ff588e 0 80%,transparent 81%)}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 20px;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);transition:opacity .4s,transform .4s,visibility 0s .4s;z-index:5}
+.screen.is-active{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
+.gift-screen{gap:25px;padding-bottom:8svh}
+.gift-screen::before{content:'';position:absolute;width:min(65vw,340px);height:45px;top:calc(50% + 105px);border-radius:50%;background:#cb315d1c;filter:blur(12px)}
+.gift-button{--charge:0;position:relative;width:min(70vw,310px);min-width:200px;aspect-ratio:1;padding:0;margin:0;border:0;background:transparent;transform-origin:50% 80%;filter:drop-shadow(0 18px 12px #bb30542d);animation:giftIdle 3s ease-in-out infinite}
+.gift-svg{position:relative;z-index:2;width:100%;height:100%;overflow:visible}
+.gift-aura{position:absolute;inset:-22%;border-radius:50%;background:radial-gradient(circle,#fff 0%,#fff4a0 22%,#ff7dab33 44%,transparent 65%);opacity:calc(var(--charge) * .9);transform:scale(calc(.75 + var(--charge) * .65));filter:blur(4px);transition:opacity .2s,transform .2s}
+.tap-bubble{position:absolute;right:-3%;top:29%;z-index:3;padding:10px 16px;border:2px solid var(--red);border-radius:16px 16px 16px 0;background:var(--paper);color:var(--red);font-size:1rem;font-weight:900;transform:rotate(9deg);box-shadow:0 4px 0 #bb315f26;animation:tapHint 1.8s ease-in-out infinite}
+.tap-copy{position:relative;margin:0;text-align:center;font-size:clamp(1rem,4vw,1.2rem);font-weight:700;color:#a02a4c}
+.gift-button.is-hit{animation:giftShake .22s ease-out}
+.gift-button.is-charged .gift-aura{opacity:1;animation:auraPulse .35s ease-in-out infinite alternate}
+.gift-button.is-charged .tap-bubble{display:none}
+.gift-button.is-opening{animation:giftOpen .85s var(--ease) forwards}
+.gift-lid,.gift-bow{transform-origin:150px 122px;transition:transform .45s var(--ease)}
+.is-opening .gift-lid,.is-opening .gift-bow{transform:translateY(-90px) rotate(-12deg)}
+.reveal-screen{z-index:7;padding:28px 16px 95px}
+.reveal-screen.is-active{pointer-events:none}.reveal-screen button{pointer-events:auto}
+.loot-stage{position:relative;display:grid;place-items:center;width:100%;height:100%;perspective:1100px}
+.focus-slot{position:relative;z-index:2;display:grid;place-items:center;width:100%;height:100%;pointer-events:none}
+.beam{position:absolute;inset:12% 15%;z-index:0;border-radius:50%;background:radial-gradient(ellipse,#fff8b98c 0%,#fff8b918 55%,transparent 70%);filter:blur(12px);pointer-events:none}
+.loot-card{margin:0}.focus-card{position:relative;width:min(76vw,340px,calc(70svh * .75));animation:lootEntrance .85s var(--ease) both;filter:drop-shadow(0 20px 20px #ac255135)}
+.image-frame{position:relative;margin:0}.image-frame img{display:block;width:100%;height:auto;object-fit:contain;user-select:none}
+.focus-card.is-leaving{animation:lootExit .45s ease-in forwards}
+.card-sparkles i{position:absolute;z-index:3;font-size:1.6rem;font-style:normal;color:#ffec98;text-shadow:0 2px #c13d6880;animation:sparkle 1s ease-in-out infinite alternate}
+.card-sparkles i:nth-child(1){left:-8%;top:15%}.card-sparkles i:nth-child(2){right:-8%;top:48%;color:#fff}.card-sparkles i:nth-child(3){left:0;bottom:5%}.card-sparkles i:nth-child(4){right:3%;bottom:16%;font-size:.8rem;color:#e72c60}
+.letter-card{position:relative;width:min(87vw,400px);padding:48px 20px 27px;border:3px solid var(--berry);border-radius:13px;background:var(--paper);box-shadow:7px 9px 0 #e75a8945,0 20px 40px #d02d6025;transform:rotate(-2deg);text-align:center;animation:letterEntrance .8s var(--ease) both}
+.letter-card::before{content:'';position:absolute;inset:9px;border:1px dashed #f184aa;border-radius:6px;pointer-events:none}
+.letter-bow{position:absolute;left:50%;top:-25px;transform:translateX(-50%);font-size:2.7rem}
+.letter-card blockquote{margin:0 0 25px;font-size:clamp(1.25rem,6vw,1.8rem);line-height:1.45;font-weight:700}.letter-card blockquote span{display:block;white-space:nowrap}
+.primary-button{position:relative;border:2px solid var(--red);border-radius:12px;padding:11px 19px;min-height:46px;color:var(--paper);background:#ec3f76;box-shadow:0 4px 0 #ac2049;font-weight:700;font-size:.92rem}.primary-button:active{transform:translateY(3px);box-shadow:0 1px 0 #ac2049}
+.final-countdown{font-size:clamp(5rem,25vw,9rem);font-weight:900;color:#b51b4f;text-shadow:4px 5px 0 #fff2b1}.count-pop{animation:countPop .65s var(--ease) both}
+.is-anticipating{animation:stageGlow .7s ease-in-out infinite alternate}
+.is-finale .beam{inset:0 -10%;background:radial-gradient(circle,#fff2a6aa,transparent 65%)}
+.finale-card{position:relative;margin:0;text-align:center;width:min(84vw,420px,57svh);animation:finaleEntrance 1.2s var(--ease) both}
+.finale-card .image-frame{border-radius:28px;box-shadow:0 0 65px #fff9b1,0 0 100px #ff7ca7a8,0 20px 50px #cc3d6c30;overflow:hidden}
+.finale-card .image-frame img{aspect-ratio:1;object-fit:contain;border-radius:28px}
+.finale-title{margin:24px 0 8px;color:#b51c4c;font-size:clamp(1.8rem,8vw,2.8rem);font-weight:900;line-height:1;text-shadow:2px 3px 0 #fff8ee}.finale-sub{margin:0;font-size:1.15rem;font-weight:700}
+.end-button{margin-top:20px;min-height:44px;padding:10px 18px;background:#fff9eead;border:0;border-radius:99px;color:#962546;font-size:.82rem;font-weight:700}
+.physics-layer{position:absolute;inset:0;z-index:6;overflow:hidden;pointer-events:none}.physics-object{position:absolute;left:0;top:0;width:76px;height:101px;pointer-events:auto;touch-action:none;cursor:grab;will-change:transform}.physics-card{width:100%;height:100%;filter:drop-shadow(0 5px 6px #a1254c30);animation:miniSpawn .45s var(--ease) both}.physics-card img{width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none}.physics-object.is-dragging{z-index:9;cursor:grabbing}
+.gallery-screen{z-index:8;justify-content:flex-start;overflow-y:auto;padding:50px 22px 35px;gap:20px;pointer-events:auto}
+.gallery-header{text-align:center}.gallery-header h2{font-size:1.3rem;margin:0}.gallery-header p{font-size:.82rem;margin:10px 0 0}.gallery-header .eyebrow{display:none}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:min(100%,440px)}.gallery-item{padding:0;border:0;background:transparent;border-radius:12px;min-width:0;overflow:hidden;filter:drop-shadow(0 5px 6px #bc305736)}.gallery-item img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain}.secondary-button{border:0;border-radius:99px;padding:12px 22px;min-height:46px;background:#ec3f76;color:#fff9ee;font-weight:700}
+.gallery-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:25px;background:#68213abf}.gallery-modal-card{position:relative;margin:0;width:min(86vw,430px,calc(78svh * .75))}.gallery-modal-card>img{display:block;width:100%;height:auto;border-radius:20px}.modal-close{position:absolute;right:-13px;top:-15px;z-index:2;width:46px;height:46px;border:2px solid var(--red);border-radius:50%;background:var(--paper);color:var(--red);font-size:1.6rem}
+.flash-layer{position:absolute;inset:0;z-index:25;pointer-events:none;background:#fff8df;opacity:0}.flash-layer.flash{animation:flash .5s ease-out}.flash-layer.mega-flash{animation:megaFlash 1.1s ease-out}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.is-background *,.is-background *::before,.is-background *::after{animation-play-state:paused!important}
+@keyframes giftIdle{50%{transform:translateY(-8px) rotate(1deg)}}
+@keyframes tapHint{50%{transform:translateY(-5px) rotate(5deg)}}
+@keyframes giftShake{20%{transform:rotate(-7deg) scale(.97)}50%{transform:rotate(6deg) scale(1.04)}80%{transform:rotate(-3deg)}}
+@keyframes auraPulse{to{transform:scale(1.8);filter:blur(9px)}}
+@keyframes giftOpen{35%{transform:scale(.94)}65%{transform:scale(1.14)}100%{transform:translateY(55px) scale(.22);opacity:0}}
+@keyframes lootEntrance{0%{opacity:0;transform:translateY(48vh) rotate(-20deg) scale(.15)}55%{opacity:1;transform:translateY(-24px) rotate(6deg) scale(1.08)}78%{transform:translateY(8px) rotate(-3deg) scale(.98)}100%{transform:none}}
+@keyframes lootExit{to{opacity:0;transform:translateY(18vh) rotate(12deg) scale(.22)}}
+@keyframes letterEntrance{from{opacity:0;transform:translateY(30vh) rotate(-15deg) scale(.2)}to{opacity:1;transform:rotate(-2deg)}}
+@keyframes finaleEntrance{0%{opacity:0;transform:translateY(50vh) rotate(-10deg) scale(.08)}50%{opacity:1;transform:translateY(-30px) rotate(4deg) scale(1.15)}75%{transform:translateY(10px) rotate(-2deg) scale(.97)}100%{transform:none}}
+@keyframes countPop{from{opacity:0;transform:scale(.6)}30%{opacity:1;transform:scale(1.1)}to{opacity:1;transform:scale(1)}}
+@keyframes stageGlow{to{filter:brightness(1.1)}}
+@keyframes sparkle{from{transform:scale(.6) rotate(-10deg);opacity:.6}to{transform:scale(1.2) rotate(10deg);opacity:1}}
+@keyframes miniSpawn{from{opacity:0;transform:scale(.15) rotate(-25deg)}70%{opacity:1;transform:scale(1.08)}to{transform:none}}
+@keyframes flash{from{opacity:.7}to{opacity:0}}@keyframes megaFlash{0%,12%{opacity:1}45%{opacity:.4}100%{opacity:0}}
+@media(max-height:580px){.gift-button{width:220px;min-width:170px}.reveal-screen{padding-bottom:70px}.finale-card{width:min(70vw,48svh)}.finale-title{margin-top:15px}.end-button{margin-top:12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.1s!important}.flash-layer{display:none}}
+
+/* Kaomoji float like small text stickers, rather than additional controls. */
+.kaomoji-field{position:absolute;inset:0;pointer-events:none;z-index:3;font-family:'Segoe UI',Tahoma,'Meiryo',sans-serif;color:#c32758;font-weight:700}
+.kaomoji-field span{position:absolute;white-space:nowrap;font-size:clamp(14px,3.8vw,20px);opacity:.65;text-shadow:0 2px 0 #fff8ef;animation:faceFloat 4s ease-in-out infinite;transition:opacity .5s,color .5s}
+.kaomoji-field span:nth-child(1){left:7%;top:12%;rotate:-12deg}
+.kaomoji-field span:nth-child(2){right:6%;top:19%;rotate:10deg;animation-delay:-1s}
+.kaomoji-field span:nth-child(3){left:4%;top:70%;rotate:-8deg;animation-delay:-2s}
+.kaomoji-field span:nth-child(4){right:4%;top:79%;rotate:12deg;animation-delay:-.5s}
+.kaomoji-field span:nth-child(5){left:8%;top:88%;rotate:7deg;animation-delay:-2.5s}
+.kaomoji-field span:nth-child(6){right:9%;top:91%;rotate:-8deg;animation-delay:-1.5s}
+.kaomoji-field span:nth-child(7){left:3%;top:34%;rotate:-13deg;opacity:.25;animation-delay:-3s}
+.kaomoji-field span:nth-child(8){right:3%;top:57%;rotate:12deg;opacity:.25;animation-delay:-3.5s}
+.is-finale .kaomoji-field span{opacity:1;color:#bf164b;animation-name:faceCheer;animation-duration:2s}
+.is-finale .kaomoji-field span:nth-child(7),.is-finale .kaomoji-field span:nth-child(8){opacity:.35;font-size:13px}
+.ascii-cheer{margin:16px -8px 0;color:#af1a4c;font-size:clamp(17px,4.7vw,23px);font-weight:700;white-space:nowrap;animation:faceCheer 2s ease-in-out infinite}
+.ascii-cheer span{display:inline-block;color:#ea426f;animation:sparkle .6s ease-in-out infinite alternate}
+.is-finale .end-button{margin-top:14px}
+@keyframes faceFloat{50%{transform:translateY(-10px) rotate(4deg)}}
+@keyframes faceCheer{25%{transform:translateY(-7px) rotate(-3deg) scale(1.07)}50%{transform:translateY(0) rotate(2deg)}75%{transform:translateY(-5px) rotate(-2deg)}}
+@media(min-width:800px){.kaomoji-field span:nth-child(1){left:20%}.kaomoji-field span:nth-child(2){right:21%}.kaomoji-field span:nth-child(3){left:23%}.kaomoji-field span:nth-child(4){right:21%}.kaomoji-field span:nth-child(5){left:30%}.kaomoji-field span:nth-child(6){right:30%}}
+@media(prefers-reduced-motion:reduce){.kaomoji-field span,.ascii-cheer{animation:none!important}}

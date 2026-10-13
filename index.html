@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ff4f86">
+  <meta name="description" content="A tiny strawberry birthday surprise for PAM and แม่">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ctext y=%2752%27 font-size=%2752%27%3E%F0%9F%8E%81%3C/text%3E%3C/svg%3E">
+  <title>HBD PAM — Strawberry Kitty Surprise</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <audio id="backgroundMusic" src="assets/a-sweet-smile.mp3" preload="metadata" loop playsinline></audio>
+  <canvas id="fxCanvas" aria-hidden="true"></canvas>
+
+  <main class="candy-frame" id="app">
+    <div class="sprinkle-field" aria-hidden="true"></div>
+    <div class="kaomoji-field" aria-hidden="true"><span>(=^_^=)</span><span>(*^▽^*)</span><span>ヽ(・∀・)ﾉ</span><span>( &gt;ω&lt; )</span><span>٩(ˊᗜˋ*)و</span><span>\(^o^)/</span><span>(づ ◕‿◕ )づ</span><span>( •̀ ω •́ )✧</span></div>
+
+    <section class="screen gift-screen is-active" id="giftScreen" aria-label="กล่องของขวัญ">
+
+      <button class="gift-button" id="giftButton" type="button" aria-label="แตะกล่องของขวัญเพื่อเติมพลัง">
+        <span class="gift-aura" aria-hidden="true"></span>
+        <svg class="gift-svg" viewBox="0 0 300 300" aria-hidden="true">
+          <defs>
+            <linearGradient id="boxPink" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff9fbd"/><stop offset="1" stop-color="#f5366f"/>
+            </linearGradient>
+            <linearGradient id="ribbonRed" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff354f"/><stop offset="1" stop-color="#bd1439"/>
+            </linearGradient>
+            <filter id="giftShadow"><feDropShadow dx="0" dy="12" stdDeviation="8" flood-color="#98173d" flood-opacity=".35"/></filter>
+          </defs>
+          <g filter="url(#giftShadow)">
+            <path class="gift-lid" d="M42 103 Q42 91 54 91 H246 Q258 91 258 103 V130 H42Z" fill="url(#boxPink)" stroke="#8d1740" stroke-width="6"/>
+            <path class="gift-box-body" d="M53 128 H247 V249 Q247 263 233 263 H67 Q53 263 53 249Z" fill="url(#boxPink)" stroke="#8d1740" stroke-width="6"/>
+            <path class="gift-ribbon-v" d="M126 92 H174 V263 H126Z" fill="url(#ribbonRed)" stroke="#8d1740" stroke-width="5"/>
+            <path d="M42 118 H258" stroke="#fff3f7" stroke-width="7" opacity=".65"/>
+            <g class="gift-bow">
+              <path d="M148 89 C104 93 77 76 84 52 C90 32 126 48 150 75Z" fill="#ff4e73" stroke="#8d1740" stroke-width="6"/>
+              <path d="M152 89 C196 93 223 76 216 52 C210 32 174 48 150 75Z" fill="#ff4e73" stroke="#8d1740" stroke-width="6"/>
+              <ellipse cx="150" cy="82" rx="25" ry="20" fill="#d8234f" stroke="#8d1740" stroke-width="6"/>
+            </g>
+            <path d="M80 158 C93 142 113 151 113 169 C113 190 80 206 80 206 C80 206 47 190 47 169 C47 151 67 142 80 158Z" fill="#fff3f7" opacity=".85" transform="scale(.48) translate(74 158)"/>
+          </g>
+        </svg>
+        <span class="tap-bubble" aria-hidden="true">TAP!</span>
+      </button>
+
+      <p class="tap-copy" id="tapCopy" aria-live="polite">แตะกล่องรัว ๆ</p>
+    </section>
+
+    <section class="screen reveal-screen" id="revealScreen" aria-labelledby="revealHeading" aria-hidden="true"><h2 class="sr-only" id="revealHeading">ของขวัญวันเกิด</h2>
+
+      <div class="loot-stage" id="lootStage">
+        <div class="beam" aria-hidden="true"></div>
+        <div class="focus-slot" id="focusSlot" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="screen gallery-screen" id="galleryScreen" aria-labelledby="galleryHeading" aria-hidden="true">
+      <header class="gallery-header">
+        <p class="eyebrow"></p>
+        <h2 id="galleryHeading">HBD PAM · HBD แม่</h2>
+        <p>แตะการ์ดเพื่อเปิดดูใบใหญ่ได้เลย</p>
+      </header>
+      <div class="gallery-grid" id="galleryGrid"></div>
+      <button class="secondary-button" id="replayButton" type="button"><span aria-hidden="true">↻</span> ดูอีกครั้ง</button>
+    </section>
+
+    <div class="physics-layer" id="physicsLayer" aria-hidden="true"></div>
+    <div class="flash-layer" id="flashLayer" aria-hidden="true"></div>
+
+    <div class="sr-only" id="announcer" aria-live="assertive"></div>
+  </main>
+
+  <template id="imageRevealTemplate">
+    <figure class="loot-card focus-card">
+      <div class="card-sparkles" aria-hidden="true"><i>✦</i><i>♥</i><i>✧</i><i>●</i></div>
+      <div class="image-frame"><img alt="" draggable="false"></div>
+      <figcaption class="sr-only"></figcaption>
+    </figure>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
