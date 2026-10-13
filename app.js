@@ -10,7 +10,7 @@
     { src: "assets/card-melody.webp", label: "My Melody สีสตรอว์เบอร์รี", alt: "การ์ดวันเกิด My Melody. ขอให้สุขภาพแข็งแรง ไม่เจ็บไม่ป่วยนะ" },
     { src: "assets/card-kitty-party.webp", label: "Kitty Party!", alt: "การ์ดงานปาร์ตี้คิตตี้. ขอให้ปีนี้ มีแต่เรื่องดี ๆ นะ" },
     { src: "assets/card-furina-2.webp", label: "แมว Furina วิ้ง ๆ", alt: "การ์ดแมว Furina สีชมพู. คิดอะไรก็ขอให้สมหวัง ตามที่ตั้งใจไว้" },
-    { src: "assets/card-kitty-pink-cake.webp", label: "เค้กชมพูของ Kitty", alt: "การ์ดคิตตี้กับเค้กวันเกิดสีชมพู. เงินทองไหลมาเทมา รวย ๆ นะ :D" },
+    { src: "assets/card-kitty-pink-cake.webp", label: "เค้กชมพูของ Kitty", alt: "การ์ดคิตตี้กับเค้กวันเกิดสีชมพู. ขอให้ไม่ปวดบ่าบ่อยๆนะ :D" },
     { src: "assets/card-furina-3.webp", label: "Furina Cat อีกหนึ่งใบ", alt: "การ์ดแมว Furina ฉลองวันเกิด. ขอให้ได้ยิ้มเยอะ ๆ มีความสุขทุกวัน ^^" },
     { src: "assets/card-furina-cake.webp", label: "Furina Cat & Strawberry Cake", alt: "การ์ดแมว Furina กับเค้กสตรอว์เบอร์รี. อายุยืน ๆ นะ ได้ฉลองวันเกิดกันอีกหลายปี" }
   ];
